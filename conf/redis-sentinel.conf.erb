@@ -25,7 +25,6 @@ when 'read_replica'
 sentinel monitor <%= gear %> <%= host %> <%= port %> <%= quorum %>
 sentinel auth-pass <%= gear %> <%= ENV['REDIS_PASSWORD'] %>
 sentinel down-after-milliseconds <%= gear %> <%= ENV['REDIS_SENTINEL_DOWN_AFTER'] || 15000 %>
-sentinel can-failover <%= gear %> yes
 sentinel parallel-syncs <%= gear %> 1
 sentinel failover-timeout <%= gear %> <%= ENV['REDIS_SENTINEL_FAILOVER_TIMEOUT'] || 900000 %>
 <%
