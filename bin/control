@@ -75,7 +75,8 @@ function start() {
     if [ "$REDIS_SENTINEL" == "1" ]; then
         if ! [ -f $sentinel_pid ]; then
             echo $REDIS_SENTINEL_CLI > env/REDIS_SENTINEL_CLI
-            erb conf/redis-sentinel.conf.erb | redis-server - --sentinel
+            erb conf/redis-sentinel.conf.erb > redis-sentinel.conf
+            redis-server redis-sentinel.conf --sentinel
             ret=$?
             if [ $ret -ne 0 ]; then
                 echo "Redis Sentinel failed to start - $ret" 1>&2
