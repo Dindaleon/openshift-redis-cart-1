@@ -3,7 +3,7 @@
 pidfile <%= ENV['OPENSHIFT_REDIS_DIR'] %>/pid/redis-sentinel.pid
 daemonize yes
 logfile <%= ENV['OPENSHIFT_REDIS_DIR'] %>/logs/redis.log
-loglevel <%= ENV['OPENSHIFT_REDIS_SENTINEL_LOGLEVEL'] %>
+loglevel <%= ENV['REDIS_SENTINEL_LOGLEVEL'] %>
 bind <%= ENV['OPENSHIFT_REDIS_SENTINEL_HOST'] %>
 
 # port <sentinel-port>
