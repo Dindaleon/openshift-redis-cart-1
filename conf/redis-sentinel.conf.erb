@@ -15,15 +15,16 @@ case ENV['REDIS_DB_MODE']
 when 'read_replica'
   masters = ENV['REDIS_CLUSTER_MASTERS'].split(',')
   members = ENV['REDIS_CLUSTER_MEMBERS'].each_line.to_a
+  sentinel_members = ENV['REDIS_CLUSTER_SENTINEL_MEMBERS'].each_line.to_a
   quorum = ENV['REDIS_SENTINEL_QUORUM'] || members.length / 2 + 1
-  members.map do |line|
+  sentinel_members.map do |line|
     gear, host = line.split('=',2)
     if masters.include?(gear)
       [gear].concat host.strip.split(':')
     end
   end.compact.each do |(gear, host, port)|
 %>
-sentinel monitor <%= gear %> <%= host %> <%= ENV['OPENSHIFT_REDIS_SENTINEL_PROXY_PORT'] %> <%= quorum %>
+sentinel monitor <%= gear %> <%= host %> <%= port %> <%= quorum %>
 sentinel auth-pass <%= gear %> <%= ENV['REDIS_PASSWORD'] %>
 sentinel down-after-milliseconds <%= gear %> <%= ENV['REDIS_SENTINEL_DOWN_AFTER'] || 15000 %>
 sentinel parallel-syncs <%= gear %> 1
