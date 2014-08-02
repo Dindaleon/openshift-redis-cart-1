@@ -8,7 +8,7 @@ bind <%= ENV['OPENSHIFT_REDIS_SENTINEL_HOST'] %>
 
 # port <sentinel-port>
 # The port that this sentinel instance will run on
-port <%= ENV['OPENSHIFT_REDIS_SENTINEL_PROXY_PORT'] %>
+port <%= ENV['OPENSHIFT_REDIS_SENTINEL_PORT'] %>
 
 <% 
 case ENV['REDIS_DB_MODE']
