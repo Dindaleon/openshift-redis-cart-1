@@ -2,9 +2,9 @@ Name: redis
 Cartridge-Short-Name: REDIS
 Display-Name: Redis
 Version: "2.8"
-Website: https://github.com/chriscgh/openshift-redis-cart
+Website: https://github.com/transformatordesign/openshift-redis-cart
 Cartridge-Version: 0.1.0
-Cartridge-Vendor: chriscgh
+Cartridge-Vendor: transformatordesign
 Categories:
   - service
   - database
